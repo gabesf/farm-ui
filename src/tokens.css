@@ -1,0 +1,180 @@
+/* ───────────────────────────────────────────
+   farm-ui design tokens — Sítio
+   Import after `@import "tailwindcss";` and add an `@source` pointing at
+   farm-ui's src so the component classes are generated.
+   Light in :root, dark via data-theme or system preference.
+   Contrast AA verified on --fundo / --superficie.
+   ─────────────────────────────────────────── */
+
+:root,
+[data-theme="light"] {
+  /* Surfaces */
+  --fundo: #EAE4D6;
+  --superficie: #F7F3E8;
+  --borda: #D3C9B4;
+
+  /* Text */
+  --texto: #211B13;
+  --texto-secundario: #5F5544;
+
+  /* Primary action (inverted ink: dark button on light theme) */
+  --acao: #211B13;
+  --acao-texto: #F7F3E8;
+
+  /* State */
+  --ok: #2E6B3F;
+  --aviso: #8A6400;
+  --erro: #A63A2A;
+  --erro-texto: #FFFFFF;
+
+  /* Disabled (exempt from AA) */
+  --desabilitado: #DFD7C4;
+  --desabilitado-texto: #8A7F6A;
+
+  /* Module identity */
+  --mod-agua: #2F6D8C;
+  --mod-seguranca: #A85520;
+  --mod-peixes: #2E7D74;
+  --mod-estufa: #5C7A2E;
+
+  /* Typography families (set by next/font variables) */
+  --fonte-titulo: var(--font-archivo), sans-serif;
+  --fonte-texto: var(--font-atkinson), sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fundo: #16120C;
+    --superficie: #231D14;
+    --borda: #3B3323;
+
+    --texto: #F1EADA;
+    --texto-secundario: #ADA189;
+
+    --acao: #F1EADA;
+    --acao-texto: #16120C;
+
+    --ok: #82C28F;
+    --aviso: #E3B341;
+    --erro: #E5654F;
+    --erro-texto: #2A100A;
+
+    --desabilitado: #2E2718;
+    --desabilitado-texto: #7A7060;
+
+    --mod-agua: #7FB5D1;
+    --mod-seguranca: #E0954F;
+    --mod-peixes: #72C4B8;
+    --mod-estufa: #ACC868;
+
+    --fonte-titulo: var(--font-archivo), sans-serif;
+    --fonte-texto: var(--font-atkinson), sans-serif;
+  }
+}
+
+[data-theme="dark"] {
+  --fundo: #16120C;
+  --superficie: #231D14;
+  --borda: #3B3323;
+
+  --texto: #F1EADA;
+  --texto-secundario: #ADA189;
+
+  --acao: #F1EADA;
+  --acao-texto: #16120C;
+
+  --ok: #82C28F;
+  --aviso: #E3B341;
+  --erro: #E5654F;
+  --erro-texto: #2A100A;
+
+  --desabilitado: #2E2718;
+  --desabilitado-texto: #7A7060;
+
+  --mod-agua: #7FB5D1;
+  --mod-seguranca: #E0954F;
+  --mod-peixes: #72C4B8;
+  --mod-estufa: #ACC868;
+
+  --fonte-titulo: var(--font-archivo), sans-serif;
+  --fonte-texto: var(--font-atkinson), sans-serif;
+}
+
+/* ─── Tailwind 4 theme ─── */
+@theme inline {
+  /* Colors */
+  --color-fundo: var(--fundo);
+  --color-superficie: var(--superficie);
+  --color-borda: var(--borda);
+  --color-texto: var(--texto);
+  --color-texto-secundario: var(--texto-secundario);
+  --color-acao: var(--acao);
+  --color-acao-texto: var(--acao-texto);
+  --color-ok: var(--ok);
+  --color-aviso: var(--aviso);
+  --color-erro: var(--erro);
+  --color-erro-texto: var(--erro-texto);
+  --color-desabilitado: var(--desabilitado);
+  --color-desabilitado-texto: var(--desabilitado-texto);
+  --color-mod-agua: var(--mod-agua);
+  --color-mod-seguranca: var(--mod-seguranca);
+  --color-mod-peixes: var(--mod-peixes);
+  --color-mod-estufa: var(--mod-estufa);
+
+  /* Fonts */
+  --font-titulo: var(--fonte-titulo);
+  --font-texto: var(--fonte-texto);
+
+  /* Typography scale */
+  --text-titulo-pagina: 24px;
+  --text-titulo-pagina--line-height: 1.15;
+  --text-titulo-cartao: 17px;
+  --text-titulo-cartao--line-height: 1.25;
+  --text-corpo: 15px;
+  --text-corpo--line-height: 1.5;
+  --text-legenda: 13px;
+  --text-legenda--line-height: 1.4;
+  --text-overline: 11px;
+  --text-overline--line-height: 1.4;
+
+  /* Radii */
+  --radius-cartao: 10px;
+  --radius-botao: 8px;
+  --radius-mini: 6px;
+}
+
+/* ─── Base ─── */
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte-texto);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ─── Time input: hide native picker icon, let lucide Clock show instead ─── */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* ─── Skeleton pulse ─── */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.9; }
+}
+
+.animate-skeleton {
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
