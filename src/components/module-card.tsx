@@ -1,10 +1,12 @@
 /** @jsxRuntime automatic */
-import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { Card, CardIconTile, CardChevron } from "./card";
 import { Badge } from "./badge";
 
-/** A module shown as a hub card. Active modules link to `href`; soon ones are not links. */
+/**
+ * A module shown as a hub card. Active modules link to `href`; soon ones are not links.
+ * The link is a plain `<a>`: each module is another zone, so navigation is a full page load.
+ */
 export type FarmModule = {
   id: string;
   name: string;
@@ -20,6 +22,8 @@ const MODULE_COLOR: Record<string, string> = {
   seguranca: "text-mod-seguranca",
   peixes: "text-mod-peixes",
   estufa: "text-mod-estufa",
+  solar: "text-mod-solar",
+  orquestrador: "text-mod-orquestrador",
 };
 
 export function ModuleCard({
@@ -59,7 +63,7 @@ export function ModuleCard({
   );
 
   return (
-    <Link href={module.href} className="block">
+    <a href={module.href} className="block">
       <Card variant={alert ? "alert" : "default"}>
         <div className="flex items-center gap-3">
           <CardIconTile icon={Icon} colorClass={colorClass} />
@@ -74,6 +78,6 @@ export function ModuleCard({
           <CardChevron />
         </div>
       </Card>
-    </Link>
+    </a>
   );
 }

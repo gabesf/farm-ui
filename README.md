@@ -7,7 +7,7 @@ Extracted from the Segurança app. TypeScript/TSX sources and CSS, no build step
 ## Install
 
 ```sh
-npm install github:gabesf/farm-ui#v0.1.0
+npm install github:gabesf/farm-ui#v0.2.0
 ```
 
 Peer dependencies: `next`, `react`, `lucide-react`.
@@ -42,6 +42,34 @@ Everything is also exported from `farm-ui`. Each `.tsx` carries a
 `@jsxRuntime automatic` pragma so test runners that transpile `node_modules`
 without the app's tsconfig (e.g. `tsx --test`) can render the components.
 
+## Back to the hub
+
+Each module is its own zone, served under the hub's address. Put `HubLink`
+(text "Sítio", 44 px touch target) at the start of the zone's header so the
+user can go back to the hub:
+
+```tsx
+import { HubLink } from "farm-ui/hub-link";
+
+<header className="px-5 pt-4">
+  <HubLink />
+  {/* the zone's own title / PageHeader */}
+</header>
+```
+
+`HubLink` is a plain `<a href="/">`, not `next/link`: `/` belongs to another
+zone (the hub), so clicking it is a full page load. That is expected. For the
+same reason `ModuleCard` renders a plain `<a>`, and any link from one zone into
+another should too (no soft navigation or prefetch across zones).
+
 ## Versions
 
 Change = commit + new tag (`vX.Y.Z`) + bump in each app. Never move a tag.
+
+## Changelog
+
+- **v0.2.0**: `HubLink` ("Sítio" link back to the hub, `farm-ui/hub-link`);
+  `--mod-solar` / `--mod-orquestrador` tokens (light and dark) and their
+  `text-mod-*` colours in `ModuleCard`; `ModuleCard` links with a plain `<a>`
+  instead of `next/link`.
+- **v0.1.0**: first version, extracted from the Segurança app.

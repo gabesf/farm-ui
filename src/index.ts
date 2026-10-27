@@ -4,6 +4,7 @@ export { Card, CardIconTile, CardChevron } from "./components/card";
 export { ChipGroup } from "./components/chip-group";
 export { EmptyState } from "./components/empty-state";
 export { ErrorState } from "./components/error-state";
+export { HubLink } from "./components/hub-link";
 export { Input, Select, Toggle, TimeField } from "./components/field";
 export { ListRow, ListRowChevron, ListRowSeparator } from "./components/list-row";
 export { ModuleCard, type FarmModule } from "./components/module-card";
